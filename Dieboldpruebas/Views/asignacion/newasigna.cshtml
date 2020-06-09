@@ -1,0 +1,87 @@
+﻿@model Dieboldpruebas.Models.Asignacion.ClsAsigSis
+
+@{
+    ViewBag.Title = "newasigna";
+}
+<h2>Asignar equipo</h2>
+
+<form method="post" action="~/asignacion/Guardar">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.idequipo, htmlAttributes: new { @class = "control-label col-md-2" })Seleccione equipo
+                <div class="col-md-10">
+                    @*ViewBag.CityList is holding all the cities values*@
+                    @Html.DropDownListFor(model => model.idequipo, ViewBag.selequi as SelectList, new { @class = "form-control pull-right" })
+                    @Html.ValidationMessageFor(model => model.idequipo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idusurio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*ViewBag.CityList is holding all the cities values*@
+                    @Html.DropDownListFor(model => model.idusurio, ViewBag.selusua as SelectList, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idusurio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idlugar, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.idlugar, ViewBag.seluga as SelectList, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idlugar, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idestado, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.idestado, ViewBag.seledo as SelectList, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idestado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.evento, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.evento, new SelectList(new string[] { "Entrada", "Salida" }, "Entrada"), htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.evento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.fecentrada, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fecentrada, new { htmlAttributes = new { @type = "date", @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.fecentrada, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.fecSalida, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fecSalida, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fecSalida, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Asignar equipo" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</form>
+    <div>
+        @Html.ActionLink("Volver al inicio", "Index")
+    </div>
+
